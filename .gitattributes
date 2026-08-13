@@ -1,0 +1,7 @@
+# LF everywhere. hooks/*.sh are why: a CRLF checkout makes them unrunnable on Linux and macOS,
+# which are exactly the machines that rely on the shell sender because they have no Node.
+* text=auto eol=lf
+*.sh text eol=lf
+# AGENTS.md is edited by reviewers on Windows and parsed by the pipeline. Pinning it to LF keeps
+# a hand edit from silently changing every line in the diff.
+AGENTS.md text eol=lf

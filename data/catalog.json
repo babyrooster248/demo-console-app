@@ -1,0 +1,63 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Áo",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Quần",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "Hàng ngừng bán",
+      "active": false
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "label": "Áo thun trơn",
+      "price": 189000,
+      "active": true
+    },
+    {
+      "id": 2,
+      "categoryId": 1,
+      "label": "Áo sơ mi linen",
+      "price": 459000,
+      "active": true
+    },
+    {
+      "id": 3,
+      "categoryId": 1,
+      "label": "Áo mẫu thử",
+      "price": 99000,
+      "active": false
+    },
+    {
+      "id": 4,
+      "categoryId": 2,
+      "label": "Quần jean",
+      "price": 720000,
+      "active": true
+    },
+    {
+      "id": 5,
+      "categoryId": 2,
+      "label": "Quần short",
+      "price": 265000,
+      "active": true
+    },
+    {
+      "id": 6,
+      "categoryId": 3,
+      "label": "Áo khoác cũ",
+      "price": 1250000,
+      "active": true
+    }
+  ]
+}

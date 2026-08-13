@@ -1,0 +1,10 @@
+{
+  "name": "catalog-svc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "report": "node report.js",
+    "seed": "node seed.js"
+  }
+}

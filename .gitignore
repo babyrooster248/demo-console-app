@@ -1,0 +1,8 @@
+.state/
+.claude/agent-knowledge.env
+AGENTS.md.proposed
+bin/
+obj/
+*.db
+*.db-shm
+*.db-wal

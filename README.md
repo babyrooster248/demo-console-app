@@ -1,0 +1,10 @@
+# catalog-svc
+
+Catalog tooling for the storefront. Plain node, no build step, no database server — the store is a
+JSON file under `data/`.
+
+    node seed.js                    load the starter catalog
+    node report.js                  list items with their category and price
+    node update.js <id> <label>     rename an item
+
+Configuration is in `config.json`.

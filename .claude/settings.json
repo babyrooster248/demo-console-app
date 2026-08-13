@@ -1,0 +1,37 @@
+{
+  "autoMemoryDirectory": "~/agent-knowledge/catalog-svc",
+  "env": {
+    "AGENT_KNOWLEDGE_PROJECT": "catalog-svc"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh hooks/post-note.sh"
+          },
+          {
+            "type": "command",
+            "command": "node hooks/post-note.js"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh hooks/flush-spool.sh"
+          },
+          {
+            "type": "command",
+            "command": "node hooks/flush-spool.js"
+          }
+        ]
+      }
+    ]
+  }
+}
