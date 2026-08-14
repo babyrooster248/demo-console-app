@@ -10,6 +10,7 @@
 - (3 people) Nothing filters `active: false` anywhere. `report` lists all six items when four are live, and an inactive category does not hide its items either — check both. Nothing throws when you forget, so a smoke test that returns rows proves the query ran, not that it filtered. [k1]
 - (unconfirmed, 1 person) `update.js` rewrites the whole of `data/catalog.json` on every call, so two edits at the same time lose one of them. Serialise anything that writes that file. [k4]
 - (unconfirmed, 1 person) CSV for the finance team must be semicolon-delimited (`SEP` in `export.js`), not comma — they open it in Excel under the vi-VN locale, whose list separator is `;`, so a comma file collapses into one column. Keep the UTF-8 BOM and CRLF too. A comma export already forced a monthly report redo. [k5]
+- (unconfirmed, 1 person) Nothing checks item `id` uniqueness — no schema or index in `lib.js`/`report.js`/`export.js`/`update.js`, so a rewrite that emits duplicate ids passes all of them silently, and `update.js` (`find(r => r.id === Number(id))`) then edits only the first match, leaving the other unreachable. Common cause: `filter()` returns the same objects, so renumbering in place mutates the original array. After any rewrite of `data/catalog.json`, assert the ids by reading them, not by checking the next command ran. [k6]
 
 ## Decisions
 - (2 people) Prices are stored as integer VND, never decimals. Floating point was tried and abandoned after totals drifted by a few dong on large carts; anything that formats a price divides at the edge, never in the data. [k2]
@@ -23,4 +24,5 @@ k2: 4c1a8f30, 9f33ab71
 k3: 4c1a8f30, b7e02d55, 9f33ab71
 k4: b7e02d55
 k5: d19f8e1b
+k6: d19f8e1b
 -->
