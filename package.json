@@ -5,6 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "report": "node report.js",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "export": "node export.js"
   }
 }
