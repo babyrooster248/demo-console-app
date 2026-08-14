@@ -9,6 +9,7 @@
 ## Traps
 - (3 people) Nothing filters `active: false` anywhere. `report` lists all six items when four are live, and an inactive category does not hide its items either — check both. Nothing throws when you forget, so a smoke test that returns rows proves the query ran, not that it filtered. [k1]
 - (unconfirmed, 1 person) `update.js` rewrites the whole of `data/catalog.json` on every call, so two edits at the same time lose one of them. Serialise anything that writes that file. [k4]
+- (unconfirmed, 1 person) Nothing checks item-id uniqueness — no schema, no id index in `lib.js`, `report.js`, `export.js` or `update.js`. A script that rewrites `data/catalog.json` by filtering can emit duplicate ids: `d.items.filter(...)` returns the *same objects*, so renumbering the result mutates `d.items` in place — you must set `d.items = kept` and drop the filtered rows. Nothing throws; `update.js <id>` does `find(r => r.id === Number(id))` and silently edits the first match, leaving the duplicate unreachable. After any rewrite, assert the ids by reading them, not by checking the next command ran. [k6]
 - (unconfirmed, 1 person) CSV for the finance team must be semicolon-delimited (`SEP` in `export.js`), not comma — they open it in Excel under the vi-VN locale, whose list separator is `;`, so a comma file collapses into one column. Keep the UTF-8 BOM and CRLF too. A comma export already forced a monthly report redo. [k5]
 
 ## Decisions
@@ -23,4 +24,5 @@ k2: 4c1a8f30, 9f33ab71
 k3: 4c1a8f30, b7e02d55, 9f33ab71
 k4: b7e02d55
 k5: d19f8e1b
+k6: d19f8e1b
 -->
