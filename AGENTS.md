@@ -17,6 +17,8 @@
 
 ## Boundaries
 - (3 people) Commit messages follow conventional commits (`feat:`, `fix:`, `chore:`). CI rejects anything else, and the failure is a lint step that names no file. [k3]
+- (unconfirmed, 1 person) `export-categories.js` (finance's category CSV) defaults to the full table, inactive categories included; its `--active-only` flag is the storefront's live-only view — the opposite polarity to `export.js`'s `--all`. Don't carry one flag's default across the two scripts: finance reconciles old invoice rows against categories that have since gone inactive, so dropping them by default breaks the match. [k7]
+- (unconfirmed, 1 person) Item ids in `data/catalog.json` are external foreign keys held by the warehouse and storefront — never renumber them (a past renumber cost two days reconciling orders) and never delete a row; retire an item with `active: false`. A gap in the id sequence and a lingering `active: false` row are the correct state, not mess to tidy. A `cleanup.js` that resequenced ids and dropped inactive rows was reverted, not fixed. [k8]
 
 <!-- knowledge-state
 k1: 4c1a8f30, b7e02d55, d19f8e1b
@@ -25,4 +27,6 @@ k3: 4c1a8f30, b7e02d55, 9f33ab71
 k4: b7e02d55
 k5: d19f8e1b
 k6: d19f8e1b
+k7: ce73f229
+k8: d19f8e1b
 -->
