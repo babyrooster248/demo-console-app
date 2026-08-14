@@ -6,7 +6,6 @@
   "scripts": {
     "report": "node report.js",
     "seed": "node seed.js",
-    "export": "node export.js",
-    "cleanup": "node cleanup.js"
+    "export": "node export.js"
   }
 }
